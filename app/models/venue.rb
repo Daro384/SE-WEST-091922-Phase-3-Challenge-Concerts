@@ -7,6 +7,10 @@ class Venue < ActiveRecord::Base
     end
 
     def most_frequent_band 
-        self.bands.max{|a,b| b.id <=> a.id}
+        this_venue = self.id
+        def count_concerts(band, venue_id)
+            band.concerts.filter{|concert| concert.venue_id == venue_id}
+        end
+        Band.all.max {|band1,band2| count_concerts(band1,this_venue) <=> count_concerts(band2,this_venue)}
     end
 end
