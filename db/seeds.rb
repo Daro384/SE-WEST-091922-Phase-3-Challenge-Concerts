@@ -3,6 +3,8 @@
 puts "Deleting Venue/Band data..."
 Venue.destroy_all
 Band.destroy_all
+puts "trying to delete Concerts"
+Concert.destroy_all
 
 puts "Creating Venues..."
 la_venue = Venue.create(title: "The Roxy", city: "LA")
@@ -14,11 +16,13 @@ ny_band = Band.create(name: "LCD Soundsystem", hometown: "NYC")
 la_band = Band.create(name: "Muna", hometown: "LA")
 chi_band = Band.create(name: "Noname", hometown: "Chicago")
 
+
 puts "Creating Concerts..."
-# ****************************************************************
-# * TODO: create concerts! Remember, a concert belongs to a band *
-# * and a concert belongs to a venue.                            *
-# ****************************************************************
-# Create concerts Here
+Concert.create(date: "12/05", venue_id: la_venue.id,  band_id: ny_band.id)
+Concert.create(date: "11/20", venue: la_venue,  band: la_band)
+Concert.create(date: "10/06", venue: chi_venue, band: chi_band)
+Concert.create(date: "10/13", venue: chi_venue, band: ny_band)
+Concert.create(date: "10/22", venue: nyc_venue, band: la_band)
+Concert.create(date: "09/30", venue: nyc_venue, band: chi_band)
 
 puts "Seeding done!"
